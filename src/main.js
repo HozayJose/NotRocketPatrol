@@ -1,8 +1,13 @@
 let config = {
-    type: Phaser.CANVAS,
+    type: Phaser.AUTO,
     width: 640,
     height: 480,
-    scene: [ Menu, Play ]
+    scene: [ Menu, Play ],
+    pixelArt: true,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+    }
 }
 
 let game = new Phaser.Game(config);
