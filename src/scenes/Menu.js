@@ -26,32 +26,25 @@ class Menu extends Phaser.Scene {
         }
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'NOT ROCKET PATROL', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ENTER to Begin', menuConfig).setOrigin(0.5);
 
         // define keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-          // Novice mode
+        if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
+          // Level difficulty will scale upon each level
           game.settings = {
-            spaceshipSpeed: 3,
-            gameTimer: 60000    
-          }
-          this.sound.play('sfx_select');
-          this.scene.start("playScene");    
-        }
-        if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-          // Expert mode
-          game.settings = {
-            spaceshipSpeed: 4,
-            gameTimer: 45000    
+            spaceshipSpeed: [3, 5, 7],
+            background: ['starfield', 'spaceship','explosion'],
+            gameTimer: 6000 //0    
           }
           this.sound.play('sfx_select');
           this.scene.start("playScene");    

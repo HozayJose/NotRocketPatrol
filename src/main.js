@@ -17,4 +17,13 @@ let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
 // reserve keyboard variables
-let keyF, keyR, keyLEFT, keyRIGHT;
+let keyF, keyR, keyLEFT, keyRIGHT, keyENTER, keyN; //cheat key for now
+
+//level significance for increase in difficulty
+let currentLevel = 0;
+
+//I want levels (3)
+//I want to change background every level
+//I want a story to play for a certain amount of time before Play
+//Each level has increased speed of "ships"
+//Last level has one extra "ship" that player should avoid

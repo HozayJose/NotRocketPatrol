@@ -14,7 +14,8 @@ class Play extends Phaser.Scene {
 
     create() {
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, game.settings.background[currentLevel]).setOrigin(0, 0);
+
 
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
@@ -79,6 +80,7 @@ class Play extends Phaser.Scene {
     update(time, delta) {
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+            currentLevel += 1;
             this.scene.restart();
         }
 
@@ -143,6 +145,13 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.sentence.join(" "); 
         
+        // check for if game ends
+        if (this.sentence.length >= 3) {
+            currentLevel += 1;
+            console.log(currentLevel);
+            //move to next level
+        }
+
         this.sound.play('sfx_explosion');
 
     
