@@ -48,8 +48,20 @@ class Play extends Phaser.Scene {
         });
 
         //particles researched from https://rexrainbow.github.io/phaser3-rex-notes/docs/site/particles/
+        //particle manager
         this.particles = this.add.particles('love');
-        
+        //particle emitter
+        this.emitter = this.particles.createEmitter({
+            x: {min: 0, max: 100},
+            y: {min:0, max: 100},
+            speed: 50,
+            lifespan: 1500,
+            blendMode: 'LUMINOSITY',
+            frequency: 5,
+            //alpha: {start: 1, end: 0},
+            scale: {start: 1, end: 0},
+            on: false
+        });
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -142,6 +154,10 @@ class Play extends Phaser.Scene {
         ship.alpha = 0;                         
         // create explosion sprite at ship's position
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
+
+        //adding particles to ship
+        this.particles.emitParticleAt(ship.x, ship.y, 25);
+
         boom.anims.play('explode');             // play explode animation
         boom.on('animationcomplete', () => {    // callback after anim completes
             ship.reset();                         // reset ship position
@@ -157,11 +173,10 @@ class Play extends Phaser.Scene {
         // score add and repaint
         this.scoreLeft.text = this.sentence.join(" "); 
         
-        // check for if game ends
+        // check for if game ends by winning
         if (this.sentence.length >= 3) {
             currentLevel += 1;
             this.scene.restart();
-            //move to next level
         }
 
         this.sound.play('sfx_explosion');

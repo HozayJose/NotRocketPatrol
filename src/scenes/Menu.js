@@ -37,7 +37,7 @@ class Menu extends Phaser.Scene {
         });
 
         // place tile sprite
-        this.menuScreen = this.add.sprite(0, 0, 640, 480, 'menu').setOrigin(0, 0);
+        this.menuScreen = this.add.sprite(0, 0, 'menu').setOrigin(0, 0);
 
         
         // show menu text
@@ -59,7 +59,7 @@ class Menu extends Phaser.Scene {
           game.settings = {
             spaceshipSpeed: [3, 5, 7],
             background: ['levelFriend', 'levelFamily','levelSelf'],
-            gameTimer: 6000 //0    
+            gameTimer: 60000    
           }
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
