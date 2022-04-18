@@ -7,14 +7,20 @@ class Play extends Phaser.Scene {
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('starfield', './assets/starfield.png'); //delete later
+        
+        //backgrounds
+        this.load.image('levelFriend', './assets/levelFriendBG.png');
+        this.load.image('levelFamily', './assets/levelFamilyBG.png');
+        this.load.image('levelSelf', './assets/levelSelfBG.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
 
     create() {
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, game.settings.background[currentLevel]).setOrigin(0, 0);
+        console.log(game.settings.background[currentLevel]);
+        this.background = this.add.image(game.config.width / 2, game.config.height/2, game.settings.background[currentLevel]).setOrigin(0.5, 0.5);
 
 
         // green UI background
@@ -45,6 +51,7 @@ class Play extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
             frameRate: 30
         });
+        
 
         // initialize score
         this.p1Score = 0;
@@ -81,14 +88,17 @@ class Play extends Phaser.Scene {
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             currentLevel += 1;
+            console.log(currentLevel);
             this.scene.restart();
         }
 
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
+            currentLevel = 0;
         }
 
-        this.starfield.tilePositionX -= 4 * delta / 16;  // update tile sprite
+        //this.starfield.tilePositionX -= 4 * delta / 16;  // update tile sprite
+
 
         if(!this.gameOver) {
             this.p1Rocket.update(time, delta);             // update p1
