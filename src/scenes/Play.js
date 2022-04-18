@@ -2,7 +2,7 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
     }
-
+    
     preload() {
         // load images/tile sprites
         this.load.image('rocket', './assets/loveRocket.png');
@@ -18,12 +18,12 @@ class Play extends Phaser.Scene {
         // load spritesheet
         this.load.spritesheet('explosion', './assets/heartExplosion.png', {frameWidth: 52, frameHeight: 48, startFrame: 0, endFrame: 9});
     }
-
+    
     create() {
         // place tile sprite
         this.background = this.add.image(game.config.width / 2, game.config.height/2, game.settings.background[currentLevel]).setOrigin(0.5, 0.5);
-
-
+        
+        
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
@@ -31,22 +31,22 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0 ,0);
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
-
+        
         // add Rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
-
+        
         // add Spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'heartYOU', 0, 'YOU').setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'heartLOVE', 0, 'LOVE').setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'heartI', 0, 'I').setOrigin(0,0);
-
+        
         // animation config
         this.anims.create({
             key: 'explode',
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
             frameRate: 12
         });
-
+        
         //particles researched from https://rexrainbow.github.io/phaser3-rex-notes/docs/site/particles/
         //particle manager
         this.particles = this.add.particles('love');
@@ -62,17 +62,16 @@ class Play extends Phaser.Scene {
             scale: {start: 1, end: 0},
             on: false
         });
-
+        
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         
-
         // initialize score
         this.sentence = [];
-
+        
         // display score
         let scoreConfig = {
             fontFamily: 'Courier',
@@ -179,7 +178,8 @@ class Play extends Phaser.Scene {
             this.scene.restart();
         }
 
-        this.sound.play('sfx_explosion');
+        //console.log('sfx_hit' + (Math.ceil(Math.random() * 4)));
+        this.sound.play('sfx_hit' + (Math.ceil(Math.random() * 4)));
 
     
       }

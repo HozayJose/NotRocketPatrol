@@ -9,10 +9,12 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_explosion', './assets/heartBeat.wav');
         this.load.audio('sfx_rocket', './assets/hitHeart2.wav');
         this.load.audio('sfx_heartMonitor', './assets/menuHeartBeat.wav');
+
         this.load.audio('sfx_hit1', './assets/heartBeat.wav');
         this.load.audio('sfx_hit2', './assets/heartBeat2.wav');
-        this.load.audio('sfx_hit3', './assetsheartBeat3.wav');
+        this.load.audio('sfx_hit3', './assets/heartBeat3.wav');
         this.load.audio('sfx_hit4', './assets/heartBeat4.wav');
+
         this.load.audio('backgroundMusic', './assets/TheBackgroundMusic.mp3');
 
         //load spritesheet
