@@ -24,14 +24,9 @@ class Play extends Phaser.Scene {
         this.background = this.add.image(game.config.width / 2, game.config.height/2, game.settings.background[currentLevel]).setOrigin(0.5, 0.5);
         
         
-        // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
-        // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0 ,0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0 ,0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0 ,0);
-        
+        // pink UI background
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0xFF1493).setOrigin(0, 0);
+
         // add Rocket (p1)
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
         
@@ -77,9 +72,9 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
+            backgroundColor: '#FF69B4',
+            color: '#FFE4E1',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -113,9 +108,9 @@ class Play extends Phaser.Scene {
         }
 
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
-            // Level difficulty will scale upon each level
             this.sound.play('sfx_select');
             this.scene.start('menuScene'); 
+            currentLevel = 0;
         }
 
 
