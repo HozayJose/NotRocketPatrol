@@ -115,8 +115,7 @@ class Play extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
             // Level difficulty will scale upon each level
             this.sound.play('sfx_select');
-            this.scene.start("menuScene");  
-            this.bgMusic.play();  
+            this.scene.start('menuScene'); 
         }
 
 
