@@ -8,6 +8,8 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/newSelect.wav');
         this.load.audio('sfx_explosion', './assets/heartBeat.wav');
         this.load.audio('sfx_rocket', './assets/hitHeart2.wav');
+        this.load.audio('sfx_heartMonitor', './assets/menuHeartBeat.wav');
+        this.load.audio('backgroundMusic', './assets/TheBackgroundMusic.mp3');
 
         //load spritesheet
         this.load.spritesheet('menuScreen', './assets/plainMenuBG.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 4});
@@ -39,6 +41,10 @@ class Menu extends Phaser.Scene {
         // place tile sprite
         this.menuScreen = this.add.sprite(0, 0, 'menu').setOrigin(0, 0);
 
+        //adding the background music
+        this.bgMusic = this.sound.add('backgroundMusic');
+        this.bgMusic.loop = true;
+        this.bgMusic.play();
         
         // show menu text
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'NOT ROCKET PATROL', menuConfig).setOrigin(0.5);
@@ -61,6 +67,7 @@ class Menu extends Phaser.Scene {
             background: ['levelFriend', 'levelFamily','levelSelf'],
             gameTimer: 60000    
           }
+          this.bgMusic.stop();
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
         } else {
