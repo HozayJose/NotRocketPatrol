@@ -63,7 +63,7 @@ class Menu extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
           // Level difficulty will scale upon each level
           game.settings = {
-            spaceshipSpeed: [3, 5, 7],
+            spaceshipSpeed: [3, 4, 5],
             background: ['levelFriend', 'levelFamily','levelSelf'],
             gameTimer: 60000    
           }
