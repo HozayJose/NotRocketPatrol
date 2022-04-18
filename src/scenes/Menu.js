@@ -32,7 +32,7 @@ class Menu extends Phaser.Scene {
         this.anims.create({
             key: 'menu',
             frames: this.anims.generateFrameNumbers('menuScreen', { start: 0, end: 4, first: 0}),
-            frameRate: 12,
+            frameRate: 6,
             repeat: 0  
         });
 

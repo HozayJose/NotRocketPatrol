@@ -5,21 +5,22 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png'); //delete later
+        this.load.image('rocket', './assets/loveRocket.png');
+        this.load.image('heartI', './assets/wordHeart1.png');
+        this.load.image('heartLOVE', './assets/wordHeart2.png');
+        this.load.image('heartYOU', './assets/wordHeart3.png');
+        this.load.image('love', './assets/heartParticle.png');
         
         //backgrounds
         this.load.image('levelFriend', './assets/levelFriendBG.png');
         this.load.image('levelFamily', './assets/levelFamilyBG.png');
         this.load.image('levelSelf', './assets/levelSelfBG.png');
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('explosion', './assets/heartExplosion.png', {frameWidth: 52, frameHeight: 48, startFrame: 0, endFrame: 9});
     }
 
     create() {
         // place tile sprite
-        console.log(game.settings.background[currentLevel]);
         this.background = this.add.image(game.config.width / 2, game.config.height/2, game.settings.background[currentLevel]).setOrigin(0.5, 0.5);
 
 
@@ -35,26 +36,29 @@ class Play extends Phaser.Scene {
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
 
         // add Spaceships (x3)
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30, 'YOU').setOrigin(0, 0);
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20, 'LOVE').setOrigin(0,0);
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10, 'I').setOrigin(0,0);
+        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'heartYOU', 0, 'YOU').setOrigin(0, 0);
+        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'heartLOVE', 0, 'LOVE').setOrigin(0,0);
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'heartI', 0, 'I').setOrigin(0,0);
+
+        // animation config
+        this.anims.create({
+            key: 'explode',
+            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
+            frameRate: 12
+        });
+
+        //particles researched from https://rexrainbow.github.io/phaser3-rex-notes/docs/site/particles/
+        this.particles = this.add.particles('love');
+        
 
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-
-        // animation config
-        this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
-            frameRate: 30
-        });
         
 
         // initialize score
-        this.p1Score = 0;
         this.sentence = [];
 
         // display score
@@ -88,7 +92,6 @@ class Play extends Phaser.Scene {
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             currentLevel += 1;
-            console.log(currentLevel);
             this.scene.restart();
         }
 
@@ -152,13 +155,12 @@ class Play extends Phaser.Scene {
         }
 
         // score add and repaint
-        this.p1Score += ship.points;
         this.scoreLeft.text = this.sentence.join(" "); 
         
         // check for if game ends
         if (this.sentence.length >= 3) {
             currentLevel += 1;
-            console.log(currentLevel);
+            this.scene.restart();
             //move to next level
         }
 
