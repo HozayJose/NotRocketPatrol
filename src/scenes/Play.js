@@ -68,6 +68,7 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         
         // initialize score
         this.sentence = [];
@@ -111,7 +112,11 @@ class Play extends Phaser.Scene {
             currentLevel = 0;
         }
 
-        //this.starfield.tilePositionX -= 4 * delta / 16;  // update tile sprite
+        if (Phaser.Input.Keyboard.JustDown(keyESC)) {
+            // Level difficulty will scale upon each level
+            this.sound.play('sfx_select');
+            this.scene.start("menuScene");    
+        }
 
 
         if(!this.gameOver) {
@@ -173,9 +178,10 @@ class Play extends Phaser.Scene {
         this.scoreLeft.text = this.sentence.join(" "); 
         
         // check for if game ends by winning
-        if (this.sentence.length >= 3) {
+        if (this.sentence.length >= 3 && currentLevel != 3) {
             currentLevel += 1;
             this.scene.restart();
+            //console.log(currentLevel);
         }
 
         //console.log('sfx_hit' + (Math.ceil(Math.random() * 4)));
