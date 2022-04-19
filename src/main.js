@@ -22,6 +22,9 @@ let keyF, keyR, keyLEFT, keyRIGHT, keyENTER, keyESC;
 //level significance for increase in difficulty
 let currentLevel = 0;
 
+//background music
+let bgMusic;
+
 //I want levels (3)
 //I want to change background every level
 //I want a story to play for a certain amount of time before Play

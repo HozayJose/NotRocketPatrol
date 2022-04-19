@@ -109,6 +109,7 @@ class Play extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
             this.sound.play('sfx_select');
+            bgMusic.stop();
             this.scene.start('menuScene'); 
             currentLevel = 0;
         }
