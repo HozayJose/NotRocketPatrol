@@ -76,7 +76,7 @@ class Menu extends Phaser.Scene {
           }
           //this.bgMusic.stop();
           this.sound.play('sfx_select');
-          this.scene.start("playScene");    
+          this.scene.start("storyScene");    
         } else {
             this.menuScreen.anims.play('menu', true);
         }

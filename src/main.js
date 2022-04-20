@@ -2,7 +2,7 @@ let config = {
     type: Phaser.AUTO,
     width: 640,
     height: 480,
-    scene: [ Menu, Play ],
+    scene: [ Menu, Story, Play ],
     pixelArt: true,
     scale: {
         mode: Phaser.Scale.FIT,
