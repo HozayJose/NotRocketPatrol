@@ -33,8 +33,10 @@ let bgMusic;
 //Each level has increased speed of "ships" to reflect difficulty
 //Last level has one extra "ship" that player should avoid - not met
 
-//Project by Jose Salas
+//Project 'NotRocketPatrol' aka 'Love Patrol' by Jose Salas
 //Many thanks to classmate Sam Feng for helping me write more efficient coding
+//This took WAYYYYYY longer than expected and I regret not getting serious about it sooner, I'm sorry
+
 
 //---- Point Breakdown ----
 // S(hrek) Tier = 60 points for redesigning game artwork, UI, and sound
