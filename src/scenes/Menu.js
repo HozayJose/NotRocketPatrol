@@ -23,12 +23,37 @@ class Menu extends Phaser.Scene {
 
     create() {
         // menu text configuration
-        let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#FF1493',
+        game.titleConfig = {
+            fontFamily: 'IndieFlower',
+            fontSize: '80px',
+            color: '#FFE4E1',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+
+        game.menuConfig = {
+            fontFamily: 'IndieFlower',
+            fontSize: '20px',
+            backgroundColor: '#FF149390',
             color: '#FFC0CB',
-            align: 'right',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+
+        game.storyConfig = {
+            fontFamily: 'IndieFlower',
+            fontSize: '28px',
+            backgroundColor: '#FF69B490',
+            color: '#FFE4E1',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -53,12 +78,17 @@ class Menu extends Phaser.Scene {
         bgMusic.play();
         
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'LOVE PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#FF69B4';
-        menuConfig.color = '#FFE4E1';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ENTER to Start', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding * 5, 'Press ESC to return to Menu', menuConfig).setOrigin(0.5);
+        this.titleText = this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'LOVE PATROL', game.titleConfig).setOrigin(0.5);
+        this.titleText.setStroke('#FFC0CB', 5);
+        this.titleText.setShadow(2, 2, "#FF69B4", 2, false, true);
+
+        let instructions = [
+            'Use ←→ arrows to move & (F) to fire',
+            'Press ENTER to Start',
+            'Press ESC to return to Menu',
+            'Press S to skip level'
+        ]
+        this.add.text(game.config.width/2, game.config.height - 100, instructions, game.menuConfig).setOrigin(0.5);
 
         // define keys
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

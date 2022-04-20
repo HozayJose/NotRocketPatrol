@@ -11,10 +11,6 @@ class Play extends Phaser.Scene {
         this.load.image('heartYOU', './assets/wordHeart3.png');
         this.load.image('love', './assets/heartParticle.png');
         
-        //backgrounds
-        this.load.image('levelFriend', './assets/levelFriendBG.png');
-        this.load.image('levelFamily', './assets/levelFamilyBG.png');
-        this.load.image('levelSelf', './assets/levelSelfBG.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/heartExplosion.png', {frameWidth: 52, frameHeight: 48, startFrame: 0, endFrame: 9});
     }
@@ -64,6 +60,7 @@ class Play extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         
         // initialize score
         this.sentence = [];
@@ -96,6 +93,12 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
+        // cheatcode
+        if(Phaser.Input.Keyboard.JustDown(keyS)) {
+            currentLevel += 1;
+            this.scene.start("storyScene"); 
+        }
+
         // check key input for restart / menu
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             currentLevel += 1;
@@ -110,8 +113,8 @@ class Play extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(keyESC)) {
             this.sound.play('sfx_select');
             bgMusic.stop();
-            this.scene.start('menuScene'); 
             currentLevel = 0;
+            this.scene.start('menuScene'); 
         }
 
 
@@ -176,7 +179,7 @@ class Play extends Phaser.Scene {
         // check for if game ends by winning
         if (this.sentence.length >= 3 && currentLevel != 3) {
             currentLevel += 1;
-            this.scene.restart();
+            this.scene.start("storyScene"); 
             //console.log(currentLevel);
         }
 

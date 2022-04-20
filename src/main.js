@@ -17,7 +17,7 @@ let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
 // reserve keyboard variables
-let keyF, keyR, keyLEFT, keyRIGHT, keyENTER, keyESC; 
+let keyF, keyR, keyLEFT, keyRIGHT, keyENTER, keyESC, keyS; 
 
 //level significance for increase in difficulty
 let currentLevel = 0;

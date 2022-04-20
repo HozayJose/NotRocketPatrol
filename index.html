@@ -5,13 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Patrol</title>
-    <style>
-        body {
-            background-color: beige;
-        }
-    </style>
-</head>
-<body>
+
+    <!-- Font downloaded from Google Font -->
+    <!-- Free for personal and commercial use! -->
+    <link rel="preload" as="font" href="assets/IndieFlower.ttf" type="font/ttf" crossorigin/>
+
     <script src="./lib/phaser.js"></script>
     <script src="./src/prefabs/Rocket.js"></script>
     <script src="./src/prefabs/Spaceship.js"></script>
@@ -19,5 +17,19 @@
     <script src="./src/scenes/Story.js"></script>
     <script src="./src/scenes/Play.js"></script>
     <script src="./src/main.js"></script>
+    <style>
+        body {
+            background-color: beige;
+        }
+
+        @font-face {
+            font-family: IndieFlower;
+            src: url('assets/IndieFlower.ttf');
+        }
+    </style>
+</head>
+<body>
+    <!-- Load in the custom font. code from Sam Feng-->
+    <div style="font-family:IndieFlower; position:absolute; left:-1000px; visibility:hidden;">.</div>
 </body>
 </html>
