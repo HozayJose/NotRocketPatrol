@@ -1,3 +1,9 @@
+//Jose Salas
+//Project 'NotRocketPatrol' aka 'Love Patrol'
+//Many thanks to classmate Sam Feng for helping me write more efficient coding
+//This took WAYYYYYY longer than expected and I regret not getting serious about it sooner, I'm sorry
+//Last Updated: 4/20/22
+
 let config = {
     type: Phaser.AUTO,
     width: 640,
@@ -32,10 +38,6 @@ let bgMusic;
 //I want a story to play between each level
 //Each level has increased speed of "ships" to reflect difficulty
 //Last level has one extra "ship" that player should avoid - not met
-
-//Project 'NotRocketPatrol' aka 'Love Patrol' by Jose Salas
-//Many thanks to classmate Sam Feng for helping me write more efficient coding
-//This took WAYYYYYY longer than expected and I regret not getting serious about it sooner, I'm sorry
 
 
 //---- Point Breakdown ----
